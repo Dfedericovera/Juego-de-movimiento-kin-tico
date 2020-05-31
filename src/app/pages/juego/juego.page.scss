@@ -1,0 +1,44 @@
+/*
+Estilos para la caja y para el elemento a mover
+*/
+#lienzo{
+    background-image: radial-gradient(circle, #000000, #0e0003, #180004, #1f0004, #250003, #2f0406, #3a0308, #460109, #5b000c, #70000b, #840007, #990000);
+    
+}
+ 
+#imagen{
+    /*Es importantisimo asignarle a la imagen una posición relativa
+    para que pueda moverse siguiendo el flujo natural del HTML es
+    decir dentro de la caja.
+    */
+    width:100px;
+    position:relative;
+    display:block;
+     
+    }
+     
+    #lienzo{
+    border:1px solid gray;
+    box-shadow:0px 0px 20px gray inset;
+    width:100%;
+    height:750px;
+    border-radius:20px;
+    overflow: hidden;
+    
+    }
+     
+    /*Animaciones en css*/
+    .gira{
+    -moz-animation:rotar 500ms infinite linear;
+    -webkit-animation:rotar 500ms infinite linear;
+    }
+     
+    @-webkit-keyframes rotar{
+    from{-webkit-transform:rotate(0deg);}
+    to{-webkit-transform:rotate(360deg);}
+    }
+     
+    @-moz-keyframes rotar{
+    from{-moz-transform:rotate(0deg);}
+    to{-moz-transform:rotate(360deg);}
+    }

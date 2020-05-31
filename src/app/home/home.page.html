@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="rgba(0, 0, 0, 0.678)"
+    style="background-image: linear-gradient(to bottom, #00050d, #00112e, #00184e, #00176b, #320081);">
+    <ion-title>
+      <b style="color: white;">Centrado</b>
+      <ion-button color="dark" size="small" class="ion-float-right" [routerLink]="['/login']">
+        <!-- (click)="onlogout()" -->
+        DESCONECTARSE</ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="boxSeleccion">
+    <h3>Elija un personaje</h3><img *ngIf="imgSeleccionada" src="{{imgSeleccionada}}" alt="">
+    <ion-item>
+      <ion-label>Personajes</ion-label>
+      <ion-select okText="Aceptar" cancelText="Cancelar" (ionChange)="seleccionarImagen($event)"
+        ngModel="imgSeleccionada">
+        <ion-select-option value="../../assets/images/spiderman.png">Spider-Man</ion-select-option>
+        <ion-select-option value="../../assets/images/superman.png">Superman</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button size="large" expand="full" color="warning" routerLink="/juego" [queryParams]="{ img: imgSeleccionada}"
+      queryParamsHandling="merge" disabled={{selecciono}}>INICIAR</ion-button>
+    <ion-button color="warning" routerLink="/top3">Top 3</ion-button>
+  </div>
+
+  <!-- <ion-button color="warning" routerLink="/acelerometro">Acelerometro</ion-button> -->
+</ion-content>

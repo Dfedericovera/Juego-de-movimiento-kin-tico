@@ -1,0 +1,23 @@
+<!-- <ion-app>
+ <h1 *ngIf="showSplash" class="h1">Vera Daniel Federico</h1>
+   <div *ngIf="showSplash" class="splash">    
+      <div class="spinner">
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+      </div>    
+  </div>
+  
+  <h1 *ngIf="showSplash" class="h1">4ºB</h1>
+  
+</ion-app> -->
+
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  
+  <div class="flb">     
+    <div class="Aligner-item Aligner-item--top"><h1 >Federico Vera 4ºB</h1></div>
+    <img src="../assets/joystick.png" style="height: 50%;width: 50%;">
+    <div class="Aligner-item Aligner-item--bottom"></div>    
+  </div>
+  
+</div>
+<ion-router-outlet></ion-router-outlet>

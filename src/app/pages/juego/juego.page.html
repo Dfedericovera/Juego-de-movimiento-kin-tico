@@ -1,0 +1,8 @@
+<button type="button" routerLink="/home" class="btn-danger" style="position: absolute;right: 0;" >Volver</button> 
+<div id="lienzo">
+  <img src="{{imgSeleccionada}}" id="imagen" alt="eclipse" />
+</div>
+<button type="button" class="btn btn-success btn-lg btn-block" (click)="comenzar()" style="position: absolute; top: 50%;"
+  *ngIf="!estaJugando">Comenzar</button>
+<!--   <button type="button" class="btn btn-success btn-lg btn-block" (click)="aparece()" style="position: absolute; top: 70%;"
+  *ngIf="estaJugando">aparece</button> -->

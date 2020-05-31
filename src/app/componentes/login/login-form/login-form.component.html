@@ -1,0 +1,73 @@
+<!-- Make sure that we should only
+
+import modules and NOT the components or services
+declare components and NOT the modules or services.
+provide services and NOT components or modules. -->
+
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('../../assets/images/bg-01.jpg');background-size:cover;">
+    <div class="wrap-login100 p-t-30 p-b-50">
+      <span class="login100-form-title p-b-41">
+        Bienvenido  <i class="far fa-user"></i>
+      </span>
+      <form class="login100-form validate-form p-b-33 p-t-5" #f="ngForm" style="background-color: rgba(255, 255, 255, 0.459);">
+
+        <div class="wrap-input100 validate-input" data-validate = "Enter username">
+          <input class="input100" type="text" name="usuario" ngModel placeholder="Nombre Usuario" #usuario="ngModel">
+          <span class="focus-input100" >
+            <ion-icon name="person"></ion-icon>
+          </span>
+        </div>
+        
+<!-- para validar -->
+<!-- <input pattern="[a-zA-Z ]*" id="nombre" name="nombre" ngModel required minlength="4" class="form-control mr-sm-2"
+        type="text" placeholder="Nombre de la pelicula" aria-label="Search" #nombre="ngModel"> -->
+<!--     <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+        <div *ngIf="nombre.errors.required">
+            Campo Requerido.
+        </div>
+        <div *ngIf="nombre.errors.pattern">
+            El nombre solo debe incluir letras.
+        </div>
+        <div *ngIf="nombre.errors.minlength">
+            El nombre debe tener mas de 4 caracteres.
+        </div>
+        <div *ngIf="nombre.errors.forbiddenName">
+            El nombre no puede ser Admin.
+        </div>
+    </div> -->
+
+        <div class="wrap-input100 validate-input" data-validate="Enter password">
+          <input class="input100" type="password" name="contraseña" placeholder="Contraseña" ngModel #contrasenia="ngModel">
+          <span class="focus-input100" >
+            <ion-icon name="key"></ion-icon>
+          </span>
+        </div>
+
+        <ion-item  class="iconselect"  style="--background: rgba(255, 255, 255, 0);">
+          
+          <ion-icon name="people"></ion-icon>         
+          <ion-label >Entrar como</ion-label>
+          <ion-select value="Admin" placeholder="Seleccione uno" (ionChange)="asignarUsuario($event,f)" 
+          okText="Aceptar" cancelText="Cancelar">
+            <ion-select-option value="Admin">Admin</ion-select-option>
+            <ion-select-option value="Invitado">Invitado</ion-select-option>
+            <ion-select-option value="Usuario">Usuario</ion-select-option>
+            <ion-select-option value="Anonimo">Anonimo</ion-select-option>
+            <ion-select-option value="Tester">Tester</ion-select-option> 
+  
+          </ion-select>
+        </ion-item>
+
+        <div class="container-login100-form-btn m-t-32" style="padding: 5% 5%;">
+          <button class="login100-form-btn" routerLink="/home">
+            Entrar
+          </button>
+        </div>
+      </form>
+      
+      
+    </div>
+  </div>
+</div>
+

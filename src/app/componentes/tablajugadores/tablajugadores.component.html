@@ -1,0 +1,23 @@
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th>Correo</th>
+        <th>Sexo</th>
+        <th>Tiempo</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jugador of listado">
+        <td>{{jugador.correo}} </td>
+        <td>{{jugador.sexo}} </td>
+        <td>{{jugador.tiempo}}s</td>
+        <!--      <td style="width: 20%;">
+            <img src="{{jugador.flag}}" alt="" style="height: 10%; width: 45%;">
+            <img src="{{API}}{{jugador.Foto}}" alt="">
+        </td> -->
+        <!-- <td> <button type="button" class="btn btn-primary" (click)="detalle(jugador)">Seleccionar</button> </td> -->
+        <!-- 
+       <td> <app-boton-eliminar (eliminado)="eliminado($event)"  [jugador]='jugador'></app-boton-eliminar> </td>
+   -->
+      </tr>
+    </tbody>
+  </table>
