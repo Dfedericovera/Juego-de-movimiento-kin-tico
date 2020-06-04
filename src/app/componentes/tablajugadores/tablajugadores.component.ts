@@ -13,7 +13,6 @@ export class TablajugadoresComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {    
-    this.listado = this.jugadoresService.traerTodos("TOP3");
   }
   detalle(actor){
     /* console.log(actor); */

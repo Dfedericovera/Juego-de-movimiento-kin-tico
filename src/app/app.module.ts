@@ -13,6 +13,12 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { ModalComponent } from "./componentes/modal/modal.component";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 
 
 @NgModule({
@@ -28,6 +34,10 @@ import { ModalComponent } from "./componentes/modal/modal.component";
      IonicModule.forRoot(),
       AppRoutingModule,
       FontAwesomeModule,
+      AngularFireModule.initializeApp(environment.firebaseConfig),
+      AngularFireAuthModule,
+      AngularFireDatabaseModule,
+      AngularFirestoreModule
     ],
   providers: [
     StatusBar,

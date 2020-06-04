@@ -38,7 +38,7 @@ provide services and NOT components or modules. -->
     </div> -->
 
         <div class="wrap-input100 validate-input" data-validate="Enter password">
-          <input class="input100" type="password" name="contraseña" placeholder="Contraseña" ngModel #contrasenia="ngModel">
+          <input class="input100" type="password" name="clave" placeholder="Contraseña" ngModel #contrasenia="ngModel">
           <span class="focus-input100" >
             <ion-icon name="key"></ion-icon>
           </span>
@@ -48,19 +48,19 @@ provide services and NOT components or modules. -->
           
           <ion-icon name="people"></ion-icon>         
           <ion-label >Entrar como</ion-label>
-          <ion-select value="Admin" placeholder="Seleccione uno" (ionChange)="asignarUsuario($event,f)" 
+          <ion-select placeholder="Seleccione uno" (ionChange)="asignarUsuario($event,f)" 
           okText="Aceptar" cancelText="Cancelar">
-            <ion-select-option value="Admin">Admin</ion-select-option>
+            <ion-select-option *ngFor="let user of listadoUsuarios">{{user.correo}}</ion-select-option><!-- 
             <ion-select-option value="Invitado">Invitado</ion-select-option>
             <ion-select-option value="Usuario">Usuario</ion-select-option>
             <ion-select-option value="Anonimo">Anonimo</ion-select-option>
-            <ion-select-option value="Tester">Tester</ion-select-option> 
+            <ion-select-option value="Tester">Tester</ion-select-option>  -->
   
           </ion-select>
         </ion-item>
 
         <div class="container-login100-form-btn m-t-32" style="padding: 5% 5%;">
-          <button class="login100-form-btn" routerLink="/home">
+          <button class="login100-form-btn" (click)="login(f)">
             Entrar
           </button>
         </div>

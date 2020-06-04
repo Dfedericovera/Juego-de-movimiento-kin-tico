@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from "../../componentes/modal/modal.component";
 import { timer } from 'rxjs';
+import { JugadoresService } from "../../servicios/jugadores.service";
+import { AuthenticationService } from "../../servicios/authentication.service";
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -17,6 +20,7 @@ export class JuegoPage implements OnInit {
 
   //Definimos e iniciamos las variables necesarias 
   TAMAÑO_IMAGEN:number=100;
+  TAMAÑO_IMAGEN_ALTO:number=200;
   y: any;
   x: any;
   controlY: any;
@@ -41,6 +45,9 @@ export class JuegoPage implements OnInit {
     private screenOrientation: ScreenOrientation,
     private route: ActivatedRoute,
     private modalController: ModalController,
+    private jugadoresService:JugadoresService,
+    private authService:AuthenticationService,
+    public alertController: AlertController
     ) {
     
     this.controlX=1;
@@ -51,9 +58,8 @@ export class JuegoPage implements OnInit {
   ngOnInit() {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
     this.route.queryParamMap.subscribe(params => {
-      console.log(params.get("img"));
+      /* console.log(params.get("img")); */
       this.imgSeleccionada = params.get("img");
-      
       /* this.imgSeleccionada = params.keys. */
     });
     
@@ -61,10 +67,10 @@ export class JuegoPage implements OnInit {
 
   ionViewDidEnter() {
     /* console.log(document.getElementById("lienzo").offsetHeight,document.getElementById("lienzo").offsetWidth); */
-    console.log(this.imgSeleccionada);
-    this.y=(document.getElementById("lienzo").offsetHeight-this.TAMAÑO_IMAGEN)/2;
+    /* console.log(this.imgSeleccionada); */
+    this.y=(document.getElementById("lienzo").offsetHeight-this.TAMAÑO_IMAGEN_ALTO)/2;
     this.x=(document.getElementById("lienzo").offsetWidth-this.TAMAÑO_IMAGEN)/2;
-
+    
   }
 
   async MostrarModal() {
@@ -75,6 +81,57 @@ export class JuegoPage implements OnInit {
       }
     });
     return await modal.present();
+  }
+  async alertSuperoRecord() {
+    const alert = await this.alertController.create({
+      translucent:true,
+      cssClass: 'alert',
+      header: 'Felicidades!',
+      message: 'Superaste tu anterior record! Tu record actual es de <strong>'+this.msToTime(this.tiempoDeJuego)+'</strong>!!!',
+      buttons: [ {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  async alertNoSuperoRecord(record) {
+    const alert = await this.alertController.create({
+      translucent:true,
+      cssClass: 'alert',
+      header: 'Bien hecho!',
+      message: 'Conseguiste un tiempo de <strong>'+this.msToTime(this.tiempoDeJuego)+'</strong>. Pero tu re record sigue siendo '+record+'!!!',
+      buttons: [ {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  async alertError(mensaje) {
+    const alert = await this.alertController.create({
+      translucent:true,
+      cssClass: 'alert',
+      header: 'Error de conexión',
+      message: 'Hubo un problema con la red no pudimos guardar el ultimo juego: '+mensaje,
+      buttons: [ {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   leerAceleracion(){
@@ -134,12 +191,12 @@ export class JuegoPage implements OnInit {
       this.controlY = 1;
       this.y = 0;
       this.detener();
-    } else if (this.y >= document.getElementById("lienzo").offsetHeight - this.TAMAÑO_IMAGEN) {
+    } else if (this.y >= document.getElementById("lienzo").offsetHeight - this.TAMAÑO_IMAGEN_ALTO) {
       console.log("choco abajo");
       //choco
       // Esto significa que si es mayor o igual a la altura que tiene el lienzo menos el tamaño de la imagen se le dará un nuevo valor a y
       this.controlY = 0;
-      this.y = document.getElementById("lienzo").offsetHeight - this.TAMAÑO_IMAGEN;
+      this.y = document.getElementById("lienzo").offsetHeight - this.TAMAÑO_IMAGEN_ALTO;
       this.detener();
     }
 
@@ -154,7 +211,7 @@ export class JuegoPage implements OnInit {
     /* document.getElementById("imagen").className = "gira"; */
     //mover
     this.estaJugando=true;
-    this.y=(document.getElementById("lienzo").offsetHeight-this.TAMAÑO_IMAGEN)/2;
+    this.y=(document.getElementById("lienzo").offsetHeight-this.TAMAÑO_IMAGEN_ALTO)/2;
     this.x=(document.getElementById("lienzo").offsetWidth-this.TAMAÑO_IMAGEN)/2;
     this.tomarTiempo();
     this.leerAceleracion();
@@ -164,12 +221,32 @@ export class JuegoPage implements OnInit {
   tomarTiempo(){
     this.tiempoDeJuego = Date.now();
   }
-
+  //SUCEDE CUANDO EL PERSONAJE CHOCA, SE GUARDA EL TIEMPO
   detener(){
     this.estaJugando=false;
     this.tiempoDeJuego =  Date.now()- this.tiempoDeJuego;
-    this.MostrarModal();
+    this.guardarDatos();    
     this.aceleromotroSubscripcion.unsubcribe();
+    
+  }
+  guardarDatos(){
+    this.jugadoresService.getUsuarios().subscribe(data=>{
+      data.map(user=>{
+        //ENCUENTRO AL USUARIO Y VERIFICO QUE EL SEA EL MEJOR PUNTAJE DE LO CONTRARIO NO LO GUARDO
+        if(user.correo == this.authService.userData["email"] && user.mejorTiempo < this.tiempoDeJuego){
+          this.jugadoresService.modificarUsuario(user.correo,this.tiempoDeJuego).then(data=>{
+            //mostrar que supero su merjor puntaje
+            this.alertSuperoRecord();
+          }).catch(error=>{
+            this.alertError(error.message);            
+          })
+        }
+        else{
+          //mostrar que no supero su mejor puntaje
+          this.alertNoSuperoRecord(user.mejorTiempo);
+        }
+      })
+    })
     
   }
   msToTime(s) {

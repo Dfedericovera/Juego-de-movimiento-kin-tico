@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { AngularFirestore } from "@angular/fire/firestore";
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class JugadoresService {
 
   listado:Array<any>=[];
-  constructor() { }
+  constructor(private db:AngularFirestore) { }
   traerTodos(filtro){
     this.listado=[];
     var admin ={
@@ -41,5 +42,24 @@ export class JugadoresService {
     /* var mins = s % 60; */
   
     return secs + '.' + ms;
+  }
+  getUsuarios(){
+    return this.db.collection('usuarios').snapshotChanges().pipe(map(users =>{
+      return users.map(a => {        
+        const data = a.payload.doc.data() as {img:Array<any>;mejorTiempo:string;correo:string;perfil:string;sexo:string;};
+        return data;
+      })
+    }))
+  }
+
+
+  modificarUsuario(emailUsuario, mejorTiempo){
+    return this.db.collection("usuarios").doc(emailUsuario).update({
+      mejorTiempo: mejorTiempo
+    }).then(function () {
+        console.log("Document successfully updated!");
+      }).catch(function (error) {
+        console.error("Error updating document: ", error);
+      });
   }
 }
