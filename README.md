@@ -1,1 +1,1 @@
-# Juego-de-movimiento-kin-tico
+# Juego-de-movimiento-kinético
