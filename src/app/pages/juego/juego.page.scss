@@ -5,6 +5,12 @@ Estilos para la caja y para el elemento a mover
   height: 100%;
   width: 100%;
   background-image: url(../../../assets//images/spikes.png);
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
 }
 #lienzo {
  
@@ -26,11 +32,9 @@ Estilos para la caja y para el elemento a mover
   border: 1px solid gray;
   box-shadow: 0px 0px 20px gray inset;
   width: 100%;
-  height: 750px;
+  height: 100%;
   border-radius: 0px;
   /* overflow: hidden; */
-}
-.alert {
 }
 #imagen {
   /*Es importantisimo asignarle a la imagen una posición relativa

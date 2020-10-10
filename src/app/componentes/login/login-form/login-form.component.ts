@@ -66,6 +66,7 @@ export class LoginFormComponent implements OnInit {
   login(f:NgForm){
     
     this.authService.SignIn(f.value.usuario,f.value.clave.toString()).then(data=>{
+      this.authService.userData = data.user;
       console.log("OK ingresando..", data);
       this.router.navigate(['/home']);
     }).catch(error=>{

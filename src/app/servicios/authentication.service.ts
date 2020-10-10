@@ -23,7 +23,7 @@ export class AuthenticationService {
     public router: Router,  
     public ngZone: NgZone 
   ) {
-    this.ngFireAuth.authState.subscribe(user => {
+    this.ngFireAuth.onAuthStateChanged(user => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -32,7 +32,7 @@ export class AuthenticationService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
-    })
+    });
   }
 
   // Login in with email/password
@@ -45,7 +45,7 @@ export class AuthenticationService {
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password)
   }
 
-  // Email verification when new user register
+  // Email verification when new user register but here i dont need it
   SendVerificationMail() {
 /*     return this.ngFireAuth.currentUser.sendEmailVerification()
     .then(() => {
@@ -66,7 +66,7 @@ export class AuthenticationService {
   // Returns true when user is looged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null) ? true : false;/*  && user.emailVerified !== false */
   }
 
   // Returns true when user's email is verified
@@ -112,7 +112,7 @@ export class AuthenticationService {
   SignOut() {
     return this.ngFireAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['log']);
+      this.router.navigate(['/login']);
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 
 @Component({
@@ -9,16 +9,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() tiempo:boolean;
-  constructor(private modalController: ModalController) { }
+  @Input() mensaje:boolean;
+  constructor(private modalController: ModalController, private popOverController:PopoverController) { }
 
   ngOnInit() {
   }
 
   dismiss(){
-    this.modalController.dismiss({
-      'dismissed':true
-    });
+    this.popOverController.dismiss();
   }
 
 }

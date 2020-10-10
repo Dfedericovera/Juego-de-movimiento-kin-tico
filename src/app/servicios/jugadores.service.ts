@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from 'rxjs/operators';
+import { user } from "../interface/user";
 @Injectable({
   providedIn: 'root'
 })
@@ -46,7 +47,7 @@ export class JugadoresService {
   getUsuarios(){
     return this.db.collection('usuarios').snapshotChanges().pipe(map(users =>{
       return users.map(a => {        
-        const data = a.payload.doc.data() as {img:Array<any>;mejorTiempo:string;correo:string;perfil:string;sexo:string;};
+        const data = a.payload.doc.data() as user;
         return data;
       })
     }))
@@ -62,4 +63,6 @@ export class JugadoresService {
         console.error("Error updating document: ", error);
       });
   }
+
+  
 }

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ModalController,PopoverController } from '@ionic/angular';
+import { ModalComponent } from "../componentes/modal/modal.component";
+import { AlertController } from '@ionic/angular';
+import { AuthenticationService } from '../servicios/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +11,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  selecciono:boolean=true;
-  imgSeleccionada:any= "../../assets/images/DCmarvel.jpg";
+  selecciono: boolean = true;
+  imgSeleccionada: any = "../../assets/images/DCmarvel.jpg";
 
-  constructor() {}
+  constructor(private authService:AuthenticationService
+    ) { }
 
-  seleccionarImagen(select){
+  seleccionarImagen(select) {
     this.imgSeleccionada = select.detail.value;
-    this.selecciono=false;
+    this.selecciono = false;
   }
-
-  
-
-
+  onlogout(){
+    this.authService.SignOut();
+  }
 
 }
