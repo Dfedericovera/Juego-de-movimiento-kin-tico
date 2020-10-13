@@ -5,7 +5,7 @@
 ## Descripcion :book:
 
 Ingresar un usuario. (registrado en BD) Se puede elegir a un personaje (DC o MARVEL). Al iniciar el juego, el personaje elegido aparecerá en el centro de la pantalla y un TIMER comenzará a funcionar, hasta que el personaje toque cualquier borde de la pantalla.
- Se debe mover al personaje por la pantalla del dispositivo (con la interacción de los sensores de movimiento). El personaje nunca debe tocar los márgenes de la pantalla, si lo hace, pierde. Los movimientos del dispositivo controlan la dirección y velocidad del movimiento del personaje. Guardar los puntos logrados por cada jugador en la BD. Mostrar el listado de los primeros tres mejores registros.
+ Se debe mover al personaje por la pantalla del dispositivo (con la interacción de los sensores de movimiento). El personaje nunca debe tocar los márgenes de la pantalla, si lo hace, pierde. Los movimientos del dispositivo controlan la dirección y velocidad del movimiento del personaje. Se guardan los puntos logrados por cada jugador en la BD. Se muestra el listado de los primeros tres mejores registros.
 
 ## Comenzando 🚀
 
