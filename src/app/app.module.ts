@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 
 
@@ -40,6 +41,7 @@ import { environment } from '../environments/environment';
       AngularFirestoreModule
     ],
   providers: [
+    FCM,
     StatusBar,
     SplashScreen,DeviceMotion,ScreenOrientation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

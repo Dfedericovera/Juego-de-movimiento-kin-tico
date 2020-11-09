@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { timer } from 'rxjs';
+import { FCM } from '@ionic-native/fcm/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -15,7 +15,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+
   ) {
     this.initializeApp();
   }
@@ -23,9 +24,9 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      
       /* this.splashScreen.show(); */
       /* timer(3000).subscribe(()=>this.splash = false); */
-
       /* this.splashScreen.hide(); */
       setTimeout(() => {
         this.splash = false;

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "731914041740",
+    "firebase_url": "https://centrado-e8bce.firebaseio.com",
+    "project_id": "centrado-e8bce",
+    "storage_bucket": "centrado-e8bce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731914041740:android:f206cf2677a2bcc69afea9",
+        "android_client_info": {
+          "package_name": "juego.movimiento.kinetico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731914041740-vgm9j31dbugfa0t3eou1oc4rq59crj00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIWQ2gK4_XiZ8fl1gOuuo4-lgz-f7N12Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731914041740-vgm9j31dbugfa0t3eou1oc4rq59crj00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

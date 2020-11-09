@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starterCentrado" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="juego.movimiento.kinetico" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Centrado</name>
     <description>Ingresar un usuario. (registrado en BD) Se puede elegir a un personaje (DC o MARVEL). Al iniciar el juego, el personaje elegido aparecerá en el centro de la pantalla y un TIMER comenzará a funcionar, hasta que el personaje toque cualquier borde de la pantalla. Objetivos: Se debe lograr mover al personaje por la pantalla del dispositivo (con la interacción de los sensores de movimiento). El personaje nunca debe tocar los márgenes de la pantalla, si lo hace, pierde. Los movimientos del dispositivo controlan la dirección y velocidad del movimiento del personaje. Guardar los puntos logrados por cada jugador en la BD. Mostrar el listado de los primeros tres mejores registros..</description>
     <author email="dfedericovera@gmail.com" href="https://github.com/dfedericovera">Federico Vera</author>
@@ -12,7 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="22" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
